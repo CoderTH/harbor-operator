@@ -33,13 +33,13 @@ jobs:
           linux/amd64
           linux/arm64
         file: Dockerfile
-        tags: goharbor/harbor-operator:dev
+        tags: release.daocloud.io/goharbor/harbor-operator:dev
     - name: Login to GitHub Container Registry
       uses: docker/login-action@v2
       with:
-        registry: ghcr.io
-        username: harbor
-        password: '${{ secrets.GHCR_TOKEN }}'
+        registry: release.daocloud.io
+        username: robot$harbor
+        password: '${{ secrets.RELEASE_TOKEN }}'
     - name: Build and push go ghcr
       uses: docker/build-push-action@v3
       with:
@@ -48,7 +48,7 @@ jobs:
           linux/amd64
           linux/arm64
         file: Dockerfile
-        tags: ghcr.io/goharbor/harbor-operator:dev
+        tags: release.daocloud.io/goharbor/harbor-operator:dev
 
   charts:
     runs-on: ubuntu-latest
